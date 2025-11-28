@@ -1,4 +1,4 @@
-import { SydbUserRepository } from '@/sydb/user-repository'
+import { SydbUserRepository } from '@/repositories/sydb/equipment-repository'
 import { ReadEquipmentUseCase } from './read-equipment.usecase'
 
 

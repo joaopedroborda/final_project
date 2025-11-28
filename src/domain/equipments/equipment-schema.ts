@@ -1,11 +1,12 @@
 import { z } from 'zod'
 
 
-export const equipmentSchema = z.object({
+export const EquipmentSchema = z.object({
 	id: z.string(),
 	name: z.string(),
-	total_quantity: z.number(),
+	//não precisa mais
+	//total_quantity: z.number(),
 	
 })
 
-export type equipmentSchema = z.infer<typeof equipmentSchema>
+export type EquipmentSchema = z.infer<typeof EquipmentSchema>
