@@ -1,5 +1,5 @@
 import { SydbUserRepository } from '@/sydb/user-repository'
-//import { CreateStudentUseCase } from './create-alunos.usecase'
+import { ReadStudentUseCase } from './create-alunos.usecase'
 
 
 

@@ -1,3 +1,3 @@
-import { studentSchema } from './alunos-schema'
+import { studentSchema } from './students-schema'
 
 export interface Student extends studentSchema { }

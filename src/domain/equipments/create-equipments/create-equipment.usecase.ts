@@ -4,7 +4,7 @@ import { left } from '@/core/errors/either'
 import { right } from '@/core/errors/either'
 //import { EquipmentRepository } from '@/repositor/interface/user-repository'
 
-import { Equipment } from '../equipamento-models'
+import { Equipment } from '../equipment-models'
 import { CreateEquipmentSchema } from './create-equipment.schema'
 
 export class CreateEquipmentUseCase {

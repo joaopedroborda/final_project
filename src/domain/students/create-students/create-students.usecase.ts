@@ -4,8 +4,8 @@ import { left } from '@/core/errors/either'
 import { right } from '@/core/errors/either'
 //import { UserRepository } from '@/repositor/interface/user-repository'
 
-import { CreateStudentSchema } from './create-alunos.schema'
-import { Student } from '../alunos-models'
+import { CreateStudentSchema } from './create-students.schema'
+import { Student } from '../students-models'
 
 export class CreateStudentUseCase {
 	constructor(

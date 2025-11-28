@@ -7,7 +7,7 @@ import { right } from '@/core/errors/either'
 
 
 import { UpdateStudentSchema } from './update-alunos.schema'
-import { Student } from '../alunos-models'
+import { Student } from '../students-models'
 
 export class UpdateStudentUseCase{
 	constructor(

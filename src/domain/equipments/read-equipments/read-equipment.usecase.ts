@@ -1,42 +1,38 @@
-
-
 import { NotFoundError } from '@/core/errors/custom/client-error/notfound-error'
 import { ZodCustomError } from '@/core/errors/custom/zod-custom-error'
 import { left } from '@/core/errors/either'
 import { right } from '@/core/errors/either'
+import { ReadEquipmentSchema } from './read-equipment.schema'
 //import { UserRepository } from '@/repositor/interface/user-repository'
 
-//import { ReadUserSchema } from './read-users-schema'
 
-
-
-export class ReadStudentUseCase {
+export class ReadEquipmentUseCase {
 	constructor (
-		private readonly studentsRepository: StudentRepository
+		private readonly equipmentsRepository: EquipmentRepository
 	){}
 
 	async execute(payload: JSONObject){
-		const parse =  ReadStudentSchema.safeParse(payload)
+		const parse =  ReadEquipmentSchema.safeParse(payload)
 			
 		if(parse.error){
 			return left(
 				new ZodCustomError(parse.error)
 			)
 		}
-		const date = parse.data
+		const data = parse.data
 
-		const userDate = await this.studentsRepository.find(date.id)
+		const equipmentData = await this.equipmentsRepository.find(data.id)
 
-		if(!userDate){
+		if(!equipmentData){
 			return left(
 				new NotFoundError(
-					'Usuario Não encontrado',
-					'Nenhum usuario com o id informado foi encontrado',
-					'user_not_found'
+					'Equipamento Não encontrado',
+					'Nenhum equipamento com o id informado foi encontrado',
+					'equipamento_not_found'
 				)
 			)
 		}
-		return right(userDate)
+		return right(equipmentData)
 	}
 }
 	
