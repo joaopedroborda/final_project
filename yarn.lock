@@ -862,6 +862,11 @@ strip-ansi@^7.0.1:
   dependencies:
     ansi-regex "^6.0.1"
 
+sydb@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.npmjs.org/sydb/-/sydb-2.0.1.tgz"
+  integrity sha512-rll5QXIvctNdY4I5VjHCVet7VJZMxTbwheTT2hUJNeoPuTwiTkDIVy5XSAD2fpJyCgfw/NVSMgQ/+RCh0mSxxQ==
+
 thread-stream@^3.0.0:
   version "3.1.0"
   resolved "https://registry.npmjs.org/thread-stream/-/thread-stream-3.1.0.tgz"
