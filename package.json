@@ -1,7 +1,7 @@
 {
   "name": "final_project",
   "version": "1.0.0",
-  "description": "",
+  "description": "Projeto final do treinamento da Sypos",
   "main": "index.js",
   "scripts": {
     "dev": "tsx --watch src/index.ts"
@@ -22,5 +22,13 @@
     "fastify-type-provider-zod": "^6.1.0",
     "sydb": "^2.0.1",
     "zod": "^4.1.13"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joaopedroborda/final_project.git"
+  },
+  "bugs": {
+    "url": "https://github.com/joaopedroborda/final_project/issues"
+  },
+  "homepage": "https://github.com/joaopedroborda/final_project#readme"
 }
