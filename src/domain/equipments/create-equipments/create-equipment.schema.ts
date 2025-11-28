@@ -1,6 +1,6 @@
 import z from 'zod'
 
-import { equipmentSchema } from '../equipamento-schema'
+import { equipmentSchema } from '../equipment-schema'
 
 export const CreateEquipmentSchema = equipmentSchema.omit({
     id: true,
