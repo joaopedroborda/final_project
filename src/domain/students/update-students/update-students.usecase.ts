@@ -1,17 +1,17 @@
 
-import { NotFoundError } from '@/core/errors/custom/client-error/notfound-error'
+import { NotFoundError } from '@/core/errors/custom/client-error/not-found-error'
 import { ZodCustomError } from '@/core/errors/custom/zod-custom-error'
 import { left } from '@/core/errors/either'
 import { right } from '@/core/errors/either'
-//import { UserRepository } from '@/repositor/interface/user-repository'
+import { StudentsRepository } from '@/repositories/interfaces/students-repository'
 
 
-import { UpdateStudentSchema } from './update-alunos.schema'
-import { Student } from '../alunos-models'
+import { UpdateStudentSchema } from './update-students.schema'
+import { Student } from '../students-model'
 
 export class UpdateStudentUseCase{
 	constructor(
-		private readonly studentsRepository: StudentRepository
+		private readonly studentsRepository: StudentsRepository
 	){}
 
 	async execute(payload: JSONObject){
@@ -39,7 +39,7 @@ export class UpdateStudentUseCase{
 		const userData: Partial<Student> = {
 			...data,
 		}
-		await this.studentsRepository.update(userData)
+		await this.studentsRepository.update(data.id, userData)
 
 
 		return right(userData)

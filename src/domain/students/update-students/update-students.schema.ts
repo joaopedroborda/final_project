@@ -1,10 +1,8 @@
 import z from 'zod'
-import { studentSchema } from '../alunos-schema'
+import { StudentSchema } from '../students-schema'
 
-export const UpdateStudentSchema = studentSchema.omit({
+export const UpdateStudentSchema = StudentSchema.omit({
 	id: true,
-	
-    
 }).partial().extend({ id: z.string() })
 
 export type UpdateStudentSchema = z.infer<typeof UpdateStudentSchema>
