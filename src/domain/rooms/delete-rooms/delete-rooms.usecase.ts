@@ -1,40 +1,41 @@
-import { NotFoundError } from "@/core/errors/custom/client-error/not-found-error";
-import { ZodCustomError } from "@/core/errors/custom/zod-custom-error";
-import { left, right } from "@/core/errors/either";
-//import { RoomsRepository } from "@/repositories/interfaces/rooms-repository";
+import { NotFoundError } from '@/core/errors/custom/client-error/not-found-error'
+import { ZodCustomError } from '@/core/errors/custom/zod-custom-error'
+import { left, right, Either } from '@/core/errors/either'
+import { RoomsRepository } from '@/repositories/interfaces/rooms-repository'
+import { DeleteRoomSchema } from './delete-rooms.schema'
 
-import { DeleteRoomSchema } from "./delete-rooms.schema";
-import { Room } from "../rooms-model";
+type DeleteRoomResult = Either<
+  ZodCustomError | NotFoundError,
+  undefined
+>
 
 export class DeleteRoomUsecase {
-  constructor(private readonly roomsRepository: RoomsRepository) {}
+  constructor(
+    private readonly roomsRepository: RoomsRepository
+  ) { }
 
-  async execute(payload: JSONObject) {
-    const parse = DeleteRoomSchema.safeParse(payload);
+  async execute(payload: { id: string }): Promise<DeleteRoomResult> { // <- aqui, objeto com id
+    const parse = DeleteRoomSchema.safeParse(payload)
 
     if (parse.error) {
-      return left(new ZodCustomError(parse.error));
+      return left(new ZodCustomError(parse.error))
     }
-    const data = parse.data;
 
-    const room = await this.roomsRepository.find(data.id);
+    const { id } = parse.data
+
+    const room = await this.roomsRepository.find(id)
 
     if (!room) {
       return left(
         new NotFoundError(
-          "Sala Não encontrada",
-          "Nenhuma sala com o id informado foi encontrada",
-          "rooms_not_found"
+          'Usuário não encontrado',
+          'Nenhum usuário com este identificador foi encontrado',
+          'room_not_found'
         )
-      );
+      )
     }
 
-    const roomData: Promise<Room> = {
-      ...data,
-    };
-
-    await this.roomsRepository.delete(data.id);
-
-    return right(null);
+    await this.roomsRepository.delete(id)
+    return right(undefined)
   }
 }
