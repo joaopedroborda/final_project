@@ -1,7 +1,7 @@
 import { NotFoundError } from '@/core/errors/custom/client-error/not-found-error'
 import { ZodCustomError } from '@/core/errors/custom/zod-custom-error'
 import { left, right, Either } from '@/core/errors/either'
-import { GearsLoanRepository } from '@/repositories/interfaces/gears-repository'
+import { GearsLoanRepository } from '@/repositories/interfaces/gears-loan-repository'
 import { DeleteGearsLoanSchema } from './finish-gears-loan.schema'
 
 type DeleteGearsLoanResult = Either<
@@ -11,7 +11,7 @@ type DeleteGearsLoanResult = Either<
 
 export class DeleteGearsLoanUsecase {
   constructor(
-    private readonly gearsloansRepository: GearsLoansRepository
+    private readonly gearsloansRepository: GearsLoanRepository
   ) { }
 
   async execute(payload: { id: string }): Promise<DeleteGearsLoanResult> { // <- aqui, objeto com id

@@ -1,9 +1,9 @@
-import { GearsLoansRepository } from '@/repositories/interfaces/gears-repository'
+import { GearsLoanRepository } from '@/repositories/interfaces/gears-loan-repository'
 import { GearsLoan } from '../gears-loan-model'
 
 
 export class ListGearsLoansUsecase {
-  constructor(private readonly gearsloansRepository: GearsLoansRepository) {}
+  constructor(private readonly gearsloansRepository: GearsLoanRepository) {}
 
   async execute(): Promise<GearsLoan[]> {
     return this.gearsloansRepository.list()

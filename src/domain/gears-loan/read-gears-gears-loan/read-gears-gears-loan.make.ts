@@ -1,8 +1,8 @@
-import { SydbGearsLoanRepository } from '@/repositories/sydb/gears-repository'
-import { ReadGearsUsecase } from '@/domain/gears/read-gears/read-gears.usecase'
+import { SydbGearsLoanRepository } from '@/repositories/sydb/gears-loan-repository'
+import { ReadGearsLoansUsecase } from './read-gears-gears-loan.usecase'
 
 export function makeReadGearsLoan() {
-    return new ReadGearsUsecase(
+    return new ReadGearsLoansUsecase(
         new SydbGearsLoanRepository()
     )
 }
