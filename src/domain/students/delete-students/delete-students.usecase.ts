@@ -1,18 +1,21 @@
 
 import { NotFoundError } from '@/core/errors/custom/client-error/not-found-error'
 import { ZodCustomError } from '@/core/errors/custom/zod-custom-error'
-import { left, right } from '@/core/errors/either'
+import { left, right, Either } from '@/core/errors/either'
 import { StudentsRepository } from '@/repositories/interfaces/students-repository'
-
-import { Student } from '../students-model'
 import { DeleteStudentSchema } from './delete-students.schema'
+
+type DeleteStudentResult = Either<
+ZodCustomError | NotFoundError,
+undefined
+>
 
 export class DeleteStudentUsecase {
 	constructor(
 		private readonly studentsRepository: StudentsRepository
 	) { }
 
-	async execute(payload: JSONObject) {
+	async execute(payload: JSONObject): Promise<DeleteStudentResult> {
 		const parse = DeleteStudentSchema.safeParse(payload)
 
 		if(parse.error) {
@@ -34,13 +37,9 @@ export class DeleteStudentUsecase {
 			)
 		}
 
-		const studentData: Promise<Student> = {
-			... data,
-		}
 
 		await this.studentsRepository.delete(data.id)
-
-		return right(null)
+		return right(undefined)
 
 	}
 }

@@ -1,5 +1,5 @@
 import { app } from "./main/app";
-import { IndexRoute } from './main/routes/students-routes/index.route'
+import { IndexRoute } from './main/routes/index.route'
 
 async function main() {
   app.register(IndexRoute, { prefix: '/'})
