@@ -1,13 +1,11 @@
-import { CustomError } from './core/errors/custom/base-custom-error'
-
-import { app } from './main/app'
+import { app } from "./main/app";
+import { IndexRoute } from './main/routes/students-routes/index.route'
 
 async function main() {
-    app.listen( { port: 8000 }  )
+  app.register(IndexRoute, { prefix: '/'})
+  await app.listen({ port: 3000 });
+
+  console.log("Server is running on port 3000 ( http://localhost:3000 )");
 }
 
-main()
-
-
-
-
+main();

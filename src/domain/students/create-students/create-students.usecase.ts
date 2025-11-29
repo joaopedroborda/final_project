@@ -1,18 +1,22 @@
 import { randomUUID } from 'node:crypto'
 
 import { ZodCustomError } from '@/core/errors/custom/zod-custom-error'
-import { left, right } from '@/core/errors/either'
+import { left, right, Either } from '@/core/errors/either'
 import { StudentsRepository } from '@/repositories/interfaces/students-repository'
 
 import { Student } from '../students-model'
 import { CreateStudentSchema } from './create-students.schema'
 
+type CreateStudentResult = Either<
+ZodCustomError,
+Student
+>
 export class CreateStudentUsecase {
 	constructor(
 		private readonly StudentsRepository: StudentsRepository
 	) { }
 
-	async execute(payload: JSONObject) {
+	async execute(payload: JSONObject): Promise<CreateStudentResult> {
 		const parse = CreateStudentSchema.safeParse(payload)
 
 		if(parse.error) {
