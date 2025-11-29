@@ -20,7 +20,7 @@ export const ReadStudentRoute = (app: FastifyTypedInstance) => {
         },
         async handler(request, reply) {
             const { id } = request.params
-            console.log('Reading User: ', id)
+            console.log('Reading Student: ', id)
             const usecase = makeReadStudent()
             const student = await usecase.execute({id})
 

@@ -1,10 +1,8 @@
-import { SydbUserRepository } from '@/repositories/sydb/equipment-repository'
-import { ReadGearsUseCase } from './read-gears.usecase'
+import { SydbGearRepository } from '@/repositories/sydb/gears-repository'
+import { ReadGearsUsecase } from './read-gears.usecase'
 
-
-
-export function makeReadGears(){
-    return new ReadGearsUseCase(
-        new SydbReadRepository()
+export function makeReadGear() {
+    return new ReadGearsUsecase(
+        new SydbGearRepository()
     )
 }

@@ -21,4 +21,12 @@ export class SydbStudentRepository implements StudentsRepository{
 		const deletar = database.ref(`students/${id}`).delete().val() as Student
 		return deletar
 	}
+
+	async list(): Promise<Student[]> {
+		const studentsObj = database.ref('students').val() as Record<string, Student> | null
+		if (!studentsObj) {
+			return []
+		}
+		return Object.values(studentsObj)
+	}
 }

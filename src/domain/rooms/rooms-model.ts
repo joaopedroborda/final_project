@@ -1,3 +1,3 @@
-import { roomSchema } from './rooms-schema'
+import { RoomSchema } from './rooms-schema'
 
-export interface Room extends roomSchema { }
+export interface Room extends RoomSchema { }

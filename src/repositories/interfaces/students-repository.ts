@@ -5,4 +5,5 @@ export interface StudentsRepository {
 	find(id: string): Promise<Student | null>
 	update(id: string, data: Partial<Student>): Promise<Student>
 	delete(id: string): Promise<Student>
+	list(): Promise<Student[]>
 }

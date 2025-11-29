@@ -9,7 +9,6 @@ import { ReadGearsSchema } from './read-gears.schema'
 export class ReadGearsUseCase {
 	constructor (
 		private readonly gearsRepository: GearsRepository
-	){}
 
 	async execute(payload: JSONObject){
 		const parse =  ReadGearsSchema.safeParse(payload)

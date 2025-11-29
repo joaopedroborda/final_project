@@ -1,6 +1,6 @@
 import z from "zod";
 
-export const ReadRoomsSchema = z.string({
+export const ReadRoomsSchema = z.object({
   id: z.string(),
 });
 
