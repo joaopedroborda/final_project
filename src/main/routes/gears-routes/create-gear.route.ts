@@ -15,7 +15,9 @@ export const CreateGearRoute = (app: FastifyTypedInstance) => {
                 name: z.string(),
             }),
             response: {
-                200: GearsSchema
+                200: z.object({
+                    name: z.string(),
+                }),
             }
         },
         async handler(request, reply) {
@@ -24,7 +26,7 @@ export const CreateGearRoute = (app: FastifyTypedInstance) => {
             const usecase = makeCreateGear()
             const gear = await usecase.execute(body)
 
-            if(gear.isLeft()) {
+            if (gear.isLeft()) {
                 return gear.throw()
             }
             reply.send(gear.value)

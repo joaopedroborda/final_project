@@ -1,6 +1,5 @@
 import z from 'zod'
 import { FastifyTypedInstance } from '../../app'
-import { StudentSchema } from '@/domain/students/students-schema'
 import { makeCreateStudent } from '@/domain/students/create-students/create-students.make'
 
 export const CreateStudentRoute = (app: FastifyTypedInstance) => {
@@ -17,7 +16,11 @@ export const CreateStudentRoute = (app: FastifyTypedInstance) => {
                 email: z.email()
             }),
             response: {
-                200: StudentSchema
+                200: z.object({
+                    name: z.string(),
+                    age: z.string(),
+                    email: z.email()
+                })
             }
         },
         async handler(request, reply) {
@@ -26,7 +29,7 @@ export const CreateStudentRoute = (app: FastifyTypedInstance) => {
             const usecase = makeCreateStudent()
             const student = await usecase.execute(body)
 
-            if(student.isLeft()) {
+            if (student.isLeft()) {
                 return student.throw()
             }
             reply.send(student.value)
