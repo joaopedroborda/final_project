@@ -26,18 +26,18 @@ export class ReadGearsLoansUsecase {
         }
         const data = parse.data
 
-        const gearsloansData = await this.gearsloansRepository.find(data.id)
+        const gearsloanData = await this.gearsloansRepository.find(data.gears_id)
 
-        if(!gearsloansData){
+        if(!gearsloanData){
             return left(
                 new NotFoundError(
-                    'Usuario Não encontrado',
-                    'Nenhum usuario com o id informado foi encontrado',
-                    'students_not_found'
+                    'Empréstimo de Equipamentos Não encontrado',
+                    'Nenhum empréstimo de equipamentos com o id informado foi encontrado',
+                    'gears_loan_not_found'
                 )
             )
         }
-        return right(gearsloansData)
+        return right(gearsloanData)
     }
 }
     
