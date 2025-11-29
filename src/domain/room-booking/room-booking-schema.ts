@@ -3,12 +3,11 @@ import { z } from 'zod'
 
 export const RoomBookingSchema = z.object({
     id: z.string(),
-    gears_id: z.string(),
+    room_id: z.string(),
     student_id: z.string(),
-    pickup_date: z.date(),
-    return_date: z.null(),
-    returned: z.boolean(),
-    
+    start_time: z.string(),
+    end_time: z.string(),
+    isBooked: z.boolean().optional()
 })
 
 export type RoomBookingSchema = z.infer<typeof RoomBookingSchema>

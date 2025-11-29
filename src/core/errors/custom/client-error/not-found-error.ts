@@ -3,8 +3,8 @@ import { BaseCustomError } from '../base-custom-error'
 export class NotFoundError extends BaseCustomError {
 	constructor (
 		message: string,
-		description: string = 'Requisição inválida. Dados não encontrados',
-		tag: string = 'Não encontrado'
+		description: string = 'Invalid request. Data not found.',
+		tag: string = 'Not found'
 	) {
 		super(
 			message,

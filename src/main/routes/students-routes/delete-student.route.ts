@@ -14,7 +14,7 @@ export const DeleteStudentRoute = (app: FastifyTypedInstance) => {
                 id: z.string()
             }),
             response: {
-                200: z.object({ message: z.string() })
+                204: z.object({ message: z.string() })
             }
         },
         async handler(request, reply) {
