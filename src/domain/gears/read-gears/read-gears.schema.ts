@@ -1,6 +1,6 @@
 import z from 'zod'
 
-export const ReadGearsSchema = z.string({
+export const ReadGearsSchema = z.object({
     id: z.string(),
 })
 

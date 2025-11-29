@@ -1,5 +1,5 @@
 import { makeListGear } from "@/domain/gears/list-gears/list-gears.make"
-import { GearSchema } from "@/domain/gears/gears-schema"
+import { GearsSchema } from "@/domain/gears/gears-schema"
 import { FastifyTypedInstance } from "@/main/app"
 import z from "zod"
 
@@ -12,7 +12,7 @@ export const ListGearRoute = (app: FastifyTypedInstance) => {
             summary: 'List all gears',
             tags: ['gear'],
             response: {
-                200: z.array(GearSchema)
+                200: z.array(GearsSchema)
             }
         },
         handler: async (_, reply) => {

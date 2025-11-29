@@ -1,6 +1,6 @@
 import z from 'zod'
 import { FastifyTypedInstance } from '../../app'
-import { GearSchema } from '@/domain/gears/gears-schema'
+import { GearsSchema } from '@/domain/gears/gears-schema'
 import { makeCreateGear } from '@/domain/gears/create-gears/create-gears.make'
 
 export const CreateGearRoute = (app: FastifyTypedInstance) => {
@@ -17,7 +17,7 @@ export const CreateGearRoute = (app: FastifyTypedInstance) => {
                 email: z.email()
             }),
             response: {
-                200: GearSchema
+                200: GearsSchema
             }
         },
         async handler(request, reply) {

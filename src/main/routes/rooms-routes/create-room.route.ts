@@ -12,9 +12,9 @@ export const CreateRoomRoute = (app: FastifyTypedInstance) => {
             summary: 'Create a new room',
             tags: ['room'],
             body: z.object({
-                name: z.string(),
-                age: z.string(),
-                email: z.email()
+               name: z.string(),
+                 capacity: z.string(),
+                 description: z.string(),
             }),
             response: {
                 200: RoomSchema

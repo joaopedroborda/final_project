@@ -1,32 +1,37 @@
-import { randomUUID } from 'crypto'
+import { randomUUID } from 'node:crypto'
 import { ZodCustomError } from '@/core/errors/custom/zod-custom-error'
-import { left } from '@/core/errors/either'
-import { right } from '@/core/errors/either'
-//import { EquipmentRepository } from '@/repositor/interface/user-repository'
-import { Gears} from '../gears-model'
+import { left, right, Either } from '@/core/errors/either'
+import { GearsRepository } from '@/repositories/interfaces/gears-repository'
+import { Gear } from '../gears-model'
 import { CreateGearsSchema } from './create-gears.schema'
 
-export class CreateGearsUseCase {
-    constructor(
-        private readonly gearsRepository: GearsRepository
-    ){}
+type CreateGearResult = Either<
+ZodCustomError,
+Gear
+>
+export class CreateGearUsecase {
+	constructor(
+		private readonly GearsRepository: GearsRepository
+	) { }
 
-    async execute(payload: JSONObject){
-        const parse = CreateGearsSchema.safeParse(payload)
-        
-        if(parse.error){
-            return left(
-                new ZodCustomError(parse.error)
-            )
-        }
-        const data = parse.data
+	async execute(payload: JSONObject): Promise<CreateGearResult> {
+		const parse = CreateGearsSchema.safeParse(payload)
 
-        const gearsData: Gears = {
-            ...data,
-            id: randomUUID(),
-        }
-        await this.gearsRepository.create(gearsData)
+		if(parse.error) {
+			return left(
+				new ZodCustomError(parse.error)
+			)
+		}
 
-        return right(gearsData)
-    }
+		const data = parse.data
+
+		const gearData: Gear = {
+			... data,
+			id: randomUUID(),
+		}
+
+		await this.GearsRepository.create(gearData)
+
+		return right(gearData)
+	}
 }

@@ -1,6 +1,6 @@
 import z from 'zod'
 import { FastifyTypedInstance } from '../../app'
-import { GearSchema } from '@/domain/gears/gears-schema'
+import { GearsSchema } from '@/domain/gears/gears-schema'
 import { makeReadGear } from '@/domain/gears/read-gears/read-gears.make'
 
 export const ReadGearRoute = (app: FastifyTypedInstance) => {
@@ -15,7 +15,7 @@ export const ReadGearRoute = (app: FastifyTypedInstance) => {
                 id: z.string()
             }),
             response: {
-                200: GearSchema
+                200: GearsSchema
             }
         },
         async handler(request, reply) {

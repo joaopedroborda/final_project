@@ -1,8 +1,6 @@
-import { SydbUserRepository } from '@/repositories/sydb/equipments-repository'
-import { CreateGearsUseCase } from './create-gears.usecase'
+import { SydbGearRepository } from "@/repositories/sydb/gears-repository";
+import { CreateGearUsecase } from "./create-gears.usecase";
 
-export function makeCreateGears(){
-    return new CreateGearsUseCase(
-        new SydbGearsRepository()
-    )
+export function makeCreateGear() {
+  return new CreateGearUsecase(new SydbGearRepository());
 }

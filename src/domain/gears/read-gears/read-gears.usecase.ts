@@ -1,16 +1,22 @@
-import { NotFoundError } from '@/core/errors/custom/client-error/notfound-error'
+
+import { NotFoundError } from '@/core/errors/custom/client-error/not-found-error'
 import { ZodCustomError } from '@/core/errors/custom/zod-custom-error'
-import { left } from '@/core/errors/either'
-import { right } from '@/core/errors/either'
+import { left, right, Either } from '@/core/errors/either'
+import { GearsRepository } from '@/repositories/interfaces/gears-repository'
 import { ReadGearsSchema } from './read-gears.schema'
-//import { GearsRepository } from '@/repositor/interface/gears-repository'
+import { Gear } from '../gears-model'
 
+type ReadGearResult = Either<
+ZodCustomError,
+Gear
+>
 
-export class ReadGearsUseCase {
+export class ReadGearsUsecase {
 	constructor (
 		private readonly gearsRepository: GearsRepository
+	){}
 
-	async execute(payload: JSONObject){
+	async execute(payload: JSONObject):  Promise<ReadGearResult> {
 		const parse =  ReadGearsSchema.safeParse(payload)
 			
 		if(parse.error){
@@ -25,9 +31,9 @@ export class ReadGearsUseCase {
 		if(!gearsData){
 			return left(
 				new NotFoundError(
-					'Equipamento Não encontrado',
-					'Nenhum equipamento com o id informado foi encontrado',
-					'equipamento_not_found'
+					'Usuario Não encontrado',
+					'Nenhum usuario com o id informado foi encontrado',
+					'gears_not_found'
 				)
 			)
 		}
