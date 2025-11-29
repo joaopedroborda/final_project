@@ -1,4 +1,4 @@
-import { SydbStudentRepository } from '@/repositories/sydb/gears-repository'
+//import { SydbStudentRepository } from '@/repositories/sydb/gears-repository'
 
 import { ListGearsLoansUsecase } from './list-gears-loan.usecase'
 
