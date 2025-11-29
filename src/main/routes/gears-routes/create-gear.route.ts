@@ -13,8 +13,6 @@ export const CreateGearRoute = (app: FastifyTypedInstance) => {
             tags: ['gear'],
             body: z.object({
                 name: z.string(),
-                age: z.string(),
-                email: z.email()
             }),
             response: {
                 200: GearsSchema

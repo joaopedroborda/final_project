@@ -5,12 +5,15 @@ import { makeUpdateStudent } from '@/domain/students/update-students/update-stud
 
 export const UpdateStudentRoute = (app: FastifyTypedInstance) => {
   app.route({
-    url: '/',
+    url: '/:id',
     method: 'PATCH',
     schema: {
       operationId: 'UpdateStudent',
       summary: 'Update a student',
       tags: ['student'],
+      params: z.object({
+        id: z.string()
+      }),
       body: z.object({
         name: z.string().optional(),
         age: z.string().optional(),
@@ -21,10 +24,12 @@ export const UpdateStudentRoute = (app: FastifyTypedInstance) => {
       }
     },
     async handler(request, reply) {
-      const { body } = request
+      const { body, params } = request
+
+      const payload = { id: params.id, ...body }
 
       const usecase = makeUpdateStudent()
-      const student = await usecase.execute(body)
+      const student = await usecase.execute(payload)
 
       if (student.isLeft()) {
         return student.throw()

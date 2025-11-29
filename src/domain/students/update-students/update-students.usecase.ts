@@ -8,40 +8,35 @@ import { Student } from '../students-model'
 
 type UpdateStudentResult = Either<
 ZodCustomError | NotFoundError,
-Partial<Student>
+Student
 >
 
-export class UpdateStudentUsecase{
-	constructor(
-		private readonly studentsRepository: StudentsRepository
-	){}
+export class UpdateStudentUsecase {
+  constructor(private readonly studentsRepository: StudentsRepository) {}
 
-	async execute(payload: JSONObject): Promise<UpdateStudentResult> {
-		const parse = UpdateStudentSchema.safeParse(payload)
-		
-		if(parse.error){
-			return left(
-				new ZodCustomError(parse.error)
-			)
-		}
-		const data = parse.data
+  async execute(payload: unknown): Promise<UpdateStudentResult> {
+    const parse = UpdateStudentSchema.safeParse(payload)
 
-		const studentExam = await this.studentsRepository.find(data.id)
+    if (parse.error) {
+      return left(new ZodCustomError(parse.error))
+    }
 
-		if(!studentExam){
-			return left(
-				new NotFoundError(
-					'Usuario Não encontrado',
-					'Nenhum usuario foi encontrado!',
-					'student_not_found'
-				)
-			)
-		}
+    const data = parse.data
+    const studentExam = await this.studentsRepository.find(data.id)
 
-		const studentData: Partial<Student> = {
-			...data,
-		}
-		const updatedStudent = await this.studentsRepository.update(data.id, studentData)
-		return right(updatedStudent)
-	}
+    if (!studentExam) {
+      return left(
+        new NotFoundError(
+          'Usuário Não encontrado',
+          'Nenhum usuário foi encontrado!',
+          'student_not_found'
+        )
+      )
+    }
+
+    const { id, ...updateFields } = data
+    const updatedStudent = await this.studentsRepository.update(id, updateFields)
+
+    return right(updatedStudent)
+  }
 }

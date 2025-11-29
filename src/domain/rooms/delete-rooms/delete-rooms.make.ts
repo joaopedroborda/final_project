@@ -1,6 +1,9 @@
-import { SydbRoomRepository } from "@/repositories/sydb/rooms-repository";
-import { DeleteRoomUsecase } from "./delete-rooms.usecase";
+import { SydbRoomRepository } from '@/repositories/sydb/rooms-repository'
+
+import { DeleteRoomUsecase } from './delete-rooms.usecase'
 
 export function makeDeleteRooms() {
-  return new DeleteRoomUsecase(new SydbRoomRepository());
+	return new DeleteRoomUsecase(
+		new SydbRoomRepository()
+	)
 }
