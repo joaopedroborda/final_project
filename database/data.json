@@ -1,5 +1,12 @@
 {
-    "students": {},
+    "students": {
+        "828cf24d-f43f-4ac8-b33d-e3ccbc7353e1": {
+            "name": "João",
+            "age": "19",
+            "email": "jp@isluny.org",
+            "id": "828cf24d-f43f-4ac8-b33d-e3ccbc7353e1"
+        }
+    },
     "rooms": {
         "d4db7553-9728-45c5-945f-e069a1d5dec0": {
             "name": "Sala 1",

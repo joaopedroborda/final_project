@@ -1,6 +1,5 @@
 import z from 'zod'
 import { FastifyTypedInstance } from '../../app'
-import { RoomSchema } from '@/domain/rooms/rooms-schema'
 import { makeCreateRoom } from '@/domain/rooms/create-rooms/create-rooms.make'
 
 export const CreateRoomRoute = (app: FastifyTypedInstance) => {
@@ -12,12 +11,16 @@ export const CreateRoomRoute = (app: FastifyTypedInstance) => {
             summary: 'Create a new room',
             tags: ['room'],
             body: z.object({
-               name: z.string(),
-                 capacity: z.string(),
-                 description: z.string(),
+                name: z.string(),
+                capacity: z.string(),
+                description: z.string(),
             }),
             response: {
-                200: RoomSchema
+                200: z.object({
+                    name: z.string(),
+                    capacity: z.string(),
+                    description: z.string(),
+                }),
             }
         },
         async handler(request, reply) {
@@ -26,7 +29,7 @@ export const CreateRoomRoute = (app: FastifyTypedInstance) => {
             const usecase = makeCreateRoom()
             const room = await usecase.execute(body)
 
-            if(room.isLeft()) {
+            if (room.isLeft()) {
                 return room.throw()
             }
             reply.send(room.value)
