@@ -2,22 +2,22 @@
 import { NotFoundError } from '@/core/errors/custom/client-error/not-found-error'
 import { ZodCustomError } from '@/core/errors/custom/zod-custom-error'
 import { left, right, Either } from '@/core/errors/either'
-import { StudentGearsLoansRepository } from '@/repositories/interfaces/students-repository'
+import { GearsLoansRepository } from '@/repositories/interfaces/gears-repository'
 import { GearsLoan } from '../gears-loan-model'
-import { ReadStudentsGearsLoansSchema } from './read-students-gears-loan.schema'
+import { ReadGearsLoansSchema } from './read-gears-gears-loan.schema'
 
 type ReadGearsLoansResult = Either<
 ZodCustomError,
 GearsLoan
 >
 
-export class ReadStudentsGearsLoansUsecase {
+export class ReadGearsLoansUsecase {
     constructor (
-        private readonly studentsgearsloansRepository: StudentGearsLoansRepository
+        private readonly gearsloansRepository: GearsLoansRepository
     ){}
 
     async execute(payload: JSONObject):  Promise<ReadGearsLoansResult> {
-        const parse = ReadStudentsGearsLoansSchema.safeParse(payload)
+        const parse = ReadGearsLoansSchema.safeParse(payload)
             
         if(parse.error){
             return left(
@@ -26,9 +26,9 @@ export class ReadStudentsGearsLoansUsecase {
         }
         const data = parse.data
 
-        const studentgearsloanData = await this.studentsgearsloansRepository.find(data.student_id)
+        const gearsloanData = await this.gearsloansRepository.find(data.gears_id)
 
-        if(!studentgearsloanData){
+        if(!gearsloanData){
             return left(
                 new NotFoundError(
                     'Empréstimo de Equipamentos Não encontrado',
@@ -37,7 +37,7 @@ export class ReadStudentsGearsLoansUsecase {
                 )
             )
         }
-        return right(studentgearsloanData)
+        return right(gearsloanData)
     }
 }
     
