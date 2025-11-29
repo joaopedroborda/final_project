@@ -26,7 +26,7 @@ export class ReadStudentsGearsLoansUsecase {
         }
         const data = parse.data
 
-        const studentgearsloanData = await this.studentsgearsloansRepository.find(data.student_id)
+        const studentgearsloanData = await this.studentsgearsloansRepository.find_student(data.student_id)
 
         if(!studentgearsloanData){
             return left(

@@ -9,11 +9,13 @@ export class SydbGearsLoanRepository implements GearsLoanRepository{
         return { ...data }
     }
 
-    async find(gears_id: string, student_id: string): Promise<GearsLoan | null> {
-        return database.ref(`gearsloan/${gears_id}`).val() as GearsLoan | null
+    async find_student(student_id: string): Promise<GearsLoan | null> {
+        return database.ref(`gearsloan/${student_id}`).val() as GearsLoan | null
     }
 
-
+    async find_gears(gears_id: string): Promise<GearsLoan | null> {
+        return database.ref(`gearsloan/${gears_id}`).val() as GearsLoan | null
+    }
 
     async delete(id: string): Promise<GearsLoan> {
         const deletar = database.ref(`gearsloan/${id}`).delete().val() as GearsLoan
