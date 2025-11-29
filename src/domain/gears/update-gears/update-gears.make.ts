@@ -1,8 +1,6 @@
-import { SydbGearsRepository } from '@/repositories/sydb/students-repository'
-import { UpdateGearsUsecase } from './update-gears.usecase'
+import { SydbGearRepository } from "@/repositories/sydb/gears-repository";
+import { UpdateGearUsecase } from "./update-gears.usecase";
 
-export function makeUpdateGears(){
-    return new UpdateGearsUsecase(
-        new SydbGearsRepository()
-    )
+export function makeUpdateGear() {
+  return new UpdateGearUsecase(new SydbGearRepository());
 }
