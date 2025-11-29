@@ -1,13 +1,10 @@
-import { z } from 'zod'
+import { z } from "zod";
 
+export const RoomSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  capacity: z.string(),
+  description: z.string(),
+});
 
-export const roomSchema = z.object({
-	id: z.string(),
-	name: z.string(),
-	capacity: z.string(),
-    //opcional:
-    // description: z.string(),
-	
-})
-
-export type roomSchema = z.infer<typeof roomSchema>
+export type RoomSchema = z.infer<typeof RoomSchema>;

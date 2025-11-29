@@ -1,4 +1,4 @@
 
-import { equipmentSchema } from './equipment-schema';
+import { EquipmentSchema } from './equipment-schema';
 
-export interface Equipment extends equipmentSchema { }
+export interface Equipment extends EquipmentSchema { }

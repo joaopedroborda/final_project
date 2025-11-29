@@ -1,9 +1,9 @@
 import z from 'zod'
 
-import { equipmentSchema } from '../equipment-schema'
+import { EquipmentSchema } from '../equipment-schema'
 
-export const CreateEquipmentSchema = equipmentSchema.omit({
+export const CreateEquipmentSchema = EquipmentSchema.omit({
     id: true,
 })
 
-export type CreateStudentSchema = z.infer<typeof CreateEquipmentSchema>
+export type CreateEquipmentSchema = z.infer<typeof CreateEquipmentSchema>

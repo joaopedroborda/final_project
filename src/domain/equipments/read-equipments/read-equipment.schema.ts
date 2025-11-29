@@ -1,7 +1,7 @@
 import z from 'zod'
 
-export const ReadEquipmentSchema = z.string({
+export const ReadEquipmentsSchema = z.string({
     id: z.string(),
 })
 
-export type ReadEquipmentSchema = z.infer<typeof ReadEquipmentSchema>
+export type ReadEquipmentsSchema = z.infer<typeof ReadEquipmentsSchema>

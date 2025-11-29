@@ -2,17 +2,17 @@ import { NotFoundError } from '@/core/errors/custom/client-error/notfound-error'
 import { ZodCustomError } from '@/core/errors/custom/zod-custom-error'
 import { left } from '@/core/errors/either'
 import { right } from '@/core/errors/either'
-import { ReadEquipmentSchema } from './read-equipment.schema'
+import { ReadEquipmentsSchema } from './read-equipment.schema'
 //import { UserRepository } from '@/repositor/interface/user-repository'
 
 
 export class ReadEquipmentUseCase {
 	constructor (
-		private readonly equipmentsRepository: EquipmentRepository
+		private readonly equipmentsRepository: EquipmentsRepository
 	){}
 
 	async execute(payload: JSONObject){
-		const parse =  ReadEquipmentSchema.safeParse(payload)
+		const parse =  ReadEquipmentsSchema.safeParse(payload)
 			
 		if(parse.error){
 			return left(

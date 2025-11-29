@@ -3,13 +3,12 @@ import { ZodCustomError } from '@/core/errors/custom/zod-custom-error'
 import { left } from '@/core/errors/either'
 import { right } from '@/core/errors/either'
 //import { EquipmentRepository } from '@/repositor/interface/user-repository'
-
 import { Equipment } from '../equipment-models'
 import { CreateEquipmentSchema } from './create-equipment.schema'
 
 export class CreateEquipmentUseCase {
     constructor(
-        private readonly equipmentsRepository: EquipmentRepository
+        private readonly equipmentsRepository: EquipmentsRepository
     ){}
 
     async execute(payload: JSONObject){
@@ -22,12 +21,12 @@ export class CreateEquipmentUseCase {
         }
         const data = parse.data
 
-        const userDate: Equipment = {
+        const equipmentData: Equipment = {
             ...data,
             id: randomUUID(),
         }
-        await this.equipmentsRepository.create(userDate)
+        await this.equipmentsRepository.create(equipmentData)
 
-        return right(userDate)
+        return right(equipmentData)
     }
 }
