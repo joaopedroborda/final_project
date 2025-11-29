@@ -13,8 +13,8 @@ export class SydbRoomBookingRepository implements RoomBookingsRepository{
     }
 
     async update(id: string, data: Partial<RoomBooking>): Promise<RoomBooking> {
-        const gear = database.ref(`room-booking/${id}`).update(data).val() as RoomBooking
-        return gear
+        const roombooking = database.ref(`room-booking/${id}`).update(data).val() as RoomBooking
+        return roombooking
     }
 
     async delete(id: string): Promise<RoomBooking> {
