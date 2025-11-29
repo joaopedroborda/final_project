@@ -12,7 +12,6 @@ export const CreateStudentRoute = (app: FastifyTypedInstance) => {
             summary: 'Create a new student',
             tags: ['student'],
             body: z.object({
-                id: z.string(),
                 name: z.string(),
                 age: z.string(),
                 email: z.email()

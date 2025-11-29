@@ -12,7 +12,6 @@ export const UpdateStudentRoute = (app: FastifyTypedInstance) => {
       summary: 'Update a student',
       tags: ['student'],
       body: z.object({
-        id: z.string(),
         name: z.string().optional(),
         age: z.string().optional(),
         email: z.string().optional()
