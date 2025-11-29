@@ -3,16 +3,16 @@ import { ZodCustomError } from '@/core/errors/custom/zod-custom-error'
 import { left } from '@/core/errors/either'
 import { right } from '@/core/errors/either'
 //import { EquipmentRepository } from '@/repositor/interface/user-repository'
-import { Equipment } from '../equipment-models'
-import { CreateEquipmentSchema } from './create-equipment.schema'
+import { Gears} from '../gears-model'
+import { CreateGearsSchema } from './create-gears.schema'
 
-export class CreateEquipmentUseCase {
+export class CreateGearsUseCase {
     constructor(
-        private readonly equipmentsRepository: EquipmentsRepository
+        private readonly gearsRepository: GearsRepository
     ){}
 
     async execute(payload: JSONObject){
-        const parse = CreateEquipmentSchema.safeParse(payload)
+        const parse = CreateGearsSchema.safeParse(payload)
         
         if(parse.error){
             return left(
@@ -21,12 +21,12 @@ export class CreateEquipmentUseCase {
         }
         const data = parse.data
 
-        const equipmentData: Equipment = {
+        const gearsData: Gears = {
             ...data,
             id: randomUUID(),
         }
-        await this.equipmentsRepository.create(equipmentData)
+        await this.gearsRepository.create(gearsData)
 
-        return right(equipmentData)
+        return right(gearsData)
     }
 }
