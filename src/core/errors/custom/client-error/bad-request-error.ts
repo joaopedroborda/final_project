@@ -1,9 +1,9 @@
 import { BaseCustomError } from '../base-custom-error'
 
-export class BadResquestError extends BaseCustomError {
+export class BadRequestError extends BaseCustomError {
 	constructor (
 		message: string,
-		description: string = 'Requisição inválida. Verifique os dados da requisição'
+		description: string = 'Invalid request. Please check the request details.'
 	) {
 		super(
 			message,
