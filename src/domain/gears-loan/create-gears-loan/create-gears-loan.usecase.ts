@@ -1,7 +1,7 @@
 import { randomUUID } from 'node:crypto'
 import { ZodCustomError } from '@/core/errors/custom/zod-custom-error'
 import { left, right, Either } from '@/core/errors/either'
-import { GearsLoansRepository } from '@/repositories/interfaces/gears-repository'
+import { GearsLoanRepository } from '@/repositories/interfaces/gears-loan-repository'
 import { GearsLoan } from '../gears-loan-model'
 import { CreateGearsLoanSchema } from './create-gears-loan.schema'
 import { NotFoundError } from '@/core/errors/custom/client-error/not-found-error'
@@ -12,7 +12,7 @@ GearsLoan
 >
 export class CreateGearsLoanUsecase {
     constructor(
-        private readonly gearsloansRepository: GearsLoansRepository
+        private readonly gearsloansRepository: GearsLoanRepository
     ) { }
 
     async execute(payload: JSONObject): Promise<CreateGearsLoanResult> {
@@ -31,7 +31,7 @@ export class CreateGearsLoanUsecase {
             id: randomUUID(),
         }
 
-        if(!gearsloanData.room_id){
+        if(!gearsloanData.gears_id){
             return left(
                 new NotFoundError(
                     'Sala Não encontrada',

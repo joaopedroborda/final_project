@@ -2,7 +2,7 @@
 import { NotFoundError } from '@/core/errors/custom/client-error/not-found-error'
 import { ZodCustomError } from '@/core/errors/custom/zod-custom-error'
 import { left, right, Either } from '@/core/errors/either'
-import { StudentGearsLoansRepository } from '@/repositories/interfaces/students-repository'
+import { GearsLoanRepository } from '@/repositories/interfaces/gears-loan-repository'
 import { GearsLoan } from '../gears-loan-model'
 import { ReadStudentsGearsLoansSchema } from './read-students-gears-loan.schema'
 
@@ -13,7 +13,7 @@ GearsLoan
 
 export class ReadStudentsGearsLoansUsecase {
     constructor (
-        private readonly studentsgearsloansRepository: StudentGearsLoansRepository
+        private readonly studentsgearsloansRepository: GearsLoanRepository
     ){}
 
     async execute(payload: JSONObject):  Promise<ReadGearsLoansResult> {
@@ -26,7 +26,7 @@ export class ReadStudentsGearsLoansUsecase {
         }
         const data = parse.data
 
-        const studentgearsloanData = await this.studentsgearsloansRepository.find(data.student_id)
+        const studentgearsloanData = await this.studentsgearsloansRepository.find_student(data.student_id)
 
         if(!studentgearsloanData){
             return left(
